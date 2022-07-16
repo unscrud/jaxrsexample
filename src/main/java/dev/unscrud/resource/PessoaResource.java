@@ -4,6 +4,7 @@ import dev.unscrud.model.Pessoa;
 import dev.unscrud.repository.PessoaRepository;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
@@ -20,6 +21,20 @@ public class PessoaResource {
   @Produces(MediaType.APPLICATION_JSON)
   public List<Pessoa> get() {
     return repository.getAll();
+  }
+
+  @POST
+  @Produces(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response post(Pessoa pessoa) {
+    try {
+      repository.add(pessoa);
+      return Response.status(Response.Status.CREATED)
+          .entity(pessoa).build();
+    } catch (Exception e) {
+      return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+          .entity(e.getMessage()).build();
+    }
   }
 
   @PUT
