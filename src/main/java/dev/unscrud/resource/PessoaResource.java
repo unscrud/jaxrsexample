@@ -23,6 +23,13 @@ public class PessoaResource {
     return repository.getAll();
   }
 
+  @GET
+  @Path("{id}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Pessoa getById(@PathParam("id") int id) {
+    return repository.get(id);
+  }
+
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
