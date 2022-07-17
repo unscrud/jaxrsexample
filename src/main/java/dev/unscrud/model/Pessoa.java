@@ -1,17 +1,15 @@
 package dev.unscrud.model;
 
 public class Pessoa {
-  private Integer id;
+  private int id;
   private String nome;
   private int idade;
 
-  public Pessoa(int id, String nome, int idade) {
-    this.id = id;
-    this.nome = nome;
-    this.idade = idade;
+  public Pessoa() {
   }
 
-  public Pessoa(String nome, int idade) {
+  public Pessoa(int id, String nome, int idade) {
+    this.id = id;
     this.nome = nome;
     this.idade = idade;
   }
