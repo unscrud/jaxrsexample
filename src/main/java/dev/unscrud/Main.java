@@ -4,6 +4,8 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import dev.unscrud.model.Pessoa;
+
 import java.io.IOException;
 import java.net.URI;
 
@@ -36,9 +38,15 @@ public class Main {
      * 
      * @param args
      * @throws IOException
+     * @throws InterruptedException
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         final HttpServer server = startServer();
+        // Criando dados de exemplo usando a api
+        PessoaBuilder.build(new Pessoa(0, "Ana", 18));
+        PessoaBuilder.build(new Pessoa(0, "Pedro", 19));
+        PessoaBuilder.build(new Pessoa(0, "João", 20));
+
         System.out.println(String.format("Jersey app started with endpoints available at "
                 + "%s%nHit Ctrl-C to stop it...", BASE_URI));
         System.in.read();
